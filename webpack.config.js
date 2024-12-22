@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const compiler = require('./plugins/BShieldCompilerPlugin')
 
 const handler = (percentage, msg, ...args) => {
     console.log(percentage, msg, args)
@@ -20,7 +21,8 @@ module.exports = {
         }
     },
     plugins: [
-        new webpack.ProvidePlugin(handler)
+        new webpack.ProvidePlugin(handler),
+        new compiler({outputFile: "quido.md"})
     ]
     // devServer: {
     //     static: {
