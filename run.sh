@@ -1,0 +1,18 @@
+java -jar compiler.jar \
+    --compilation_level=ADVANCED \
+    --process_common_js_modules \
+    --module_resolution NODE \
+    --js test/A0.js \
+    --js test/B0.js \
+    --js test/C0.js \
+    --chunk common:auto \
+    --js test/A1.js \
+    --chunk A1:1:common \
+    --js test/B1.js \
+    --chunk B1:1:common \
+    --js test/A2.js \
+    --chunk A2:1:A1,common \
+    --formatting PRETTY_PRINT \
+    --create_source_map dest/%outname%.map \
+    --output_manifest dest/MANIFEST.MF \
+    --output_chunk_dependencies dest/chunk_dependencies.json
